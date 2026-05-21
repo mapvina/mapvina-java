@@ -1,0 +1,15 @@
+apply plugin: 'jacoco'
+
+jacoco {
+}
+
+jacocoTestReport{
+    dependsOn test
+    group = 'Coverage reports'
+    description = 'Generates a test coverage report for a project'
+
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}

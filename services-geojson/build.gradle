@@ -1,0 +1,12 @@
+apply plugin: 'java-library'
+
+dependencies {
+  // Gson
+  api libs.gson
+
+  // Annotations
+  compileOnly libs.supportAnnotation
+
+  // Test Dependencies
+  testImplementation libs.okhttp3Mockwebserver
+}

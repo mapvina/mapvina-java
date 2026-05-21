@@ -1,0 +1,8 @@
+apply plugin: 'java-library'
+
+dependencies {
+  api project(":services-geojson")
+
+  // Annotations
+  compileOnly libs.supportAnnotation
+}

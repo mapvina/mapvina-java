@@ -1,0 +1,5 @@
+rootProject.name = "mapvina-java"
+println('MapVina Java combined build initializing')
+
+include 'services-geojson'
+include 'services-turf'

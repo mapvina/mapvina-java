@@ -1,0 +1,37 @@
+ext {
+    mapVinaArtifactGroupId = 'io.github.mapvina'
+    mapVinaArtifactId = project.hasProperty('POM_ARTIFACT_ID') ? project.property('POM_ARTIFACT_ID') : System.getenv('POM_ARTIFACT_ID')
+    mapVinaArtifactTitle = 'MapVina Android Java Utilities'
+    mapVinaArtifactDescription = project.hasProperty('POM_DESCRIPTION') ? project.property('POM_DESCRIPTION') : System.getenv('POM_DESCRIPTION')
+    mapVinaDeveloperName = 'MapVina'
+    mapVinaDeveloperEmail = 'mapvina@mapvina.com'
+    mapVinaDeveloperOrganization = 'MapVina'
+    mapVinaDeveloperOrganizationUrl = 'http://www.mapvina.com'
+    mapVinaDeveloperId = 'mapvina'
+    mapVinaArtifactUrl = 'https://github.com/mapvina/mapvina-java'
+    mapVinaArtifactVcsUrl = 'https://github.com/mapvina/mapvina-java.git'
+    mapVinaArtifactScmUrl = 'scm:git@github.com:mapvina/mapvina-java.git'
+    mapVinaArtifactLicenseName = 'The Apache Software License, Version 2.0'
+    mapVinaArtifactLicenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    versionName = getVersionName()
+    isSnapshot = isSnapshot()
+}
+
+def getVersionName() {
+    def version = System.getenv('VERSION')
+    def deducedVersion = isSnapshot() ? getSnapshotVersion(version) : version
+    project.logger.info("Project version detected: ${deducedVersion}")
+    return deducedVersion
+}
+
+def isSnapshot() {
+    def snapshotProp = findProperty("snapshot")
+    return snapshotProp ? snapshotProp.asBoolean() : false
+}
+
+private static def getSnapshotVersion(String version) {
+    def matcher = version =~ /^[v|V](\d+).(\d+)?.*/
+    def major = (matcher[0][1] as Integer)
+    def minor = (matcher[0][2] as Integer) + 1
+    return "${major}.${minor}.0-SNAPSHOT"
+}
