@@ -22,7 +22,7 @@ javadoc:
 	./gradlew :services:javadoc; mv services/build/docs/javadoc/ ./documentation/services/javadoc/ ; \
 
 publish:
-	./gradlew publishReleasePublicationToSonatypeRepository closeAndReleaseSonatypeStagingRepository
+	./gradlew :services-geojson:publishToSonatype :services-turf:publishToSonatype
 
 clean:
 	./gradlew clean
